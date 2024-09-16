@@ -98,7 +98,7 @@ async function getCharacters () {
               </h1>
             </template>
 
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center capitalize">
               <div>
                 <h1>
                   {{ birthYear(character.birthYear) }}
