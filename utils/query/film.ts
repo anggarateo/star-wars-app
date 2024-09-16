@@ -40,6 +40,7 @@ const film: any = (id: string) => `{
       characters {
         name,
         birthYear,
+        gender,
         height,
         mass,
         id
