@@ -102,23 +102,33 @@ async function getDetailFilm () {
           v-for="character in data.characterConnection?.characters"
           :key="character.id"
           :to="`/characters/${character.id}`"
-          class="min-w-[calc(100vw/3)] sm:min-w-[calc(100vw/10)] text-end space-y-1 border rounded p-2 shadow"
+          class="min-w-[calc(100vw/3)] sm:min-w-[calc(100vw/10)] space-y-1 border rounded p-2 shadow"
         >
-          <h1>
+          <h1 class="font-semibold text-end">
             {{ character.name }}
           </h1>
 
-          <h1>
-            {{ character.birthYear }}
-          </h1>
+          <div class="flex justify-between items-center">
+            <div>
+              <h1>
+                {{ character.birthYear }}
+              </h1>
 
-          <h1>
-            {{ character.height }} kg
-          </h1>
+              <h1>
+                {{ character.gender }}
+              </h1>
+            </div>
 
-          <h1>
-            {{ character.mass }} cm
-          </h1>
+            <div class="text-end">
+              <h1>
+                {{ character.mass }} kg
+              </h1>
+  
+              <h1>
+                {{ character.height }} cm
+              </h1>
+            </div>
+          </div>
         </NuxtLink>
       </div>
     </div>
