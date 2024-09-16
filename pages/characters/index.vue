@@ -1,72 +1,9 @@
-<script lang="ts" setup>
-import film from '~/utils/query/film';
-
-
-useHead({
-  title: 'All Films -'
-})
-
-const toast = useToast()
-
-
-const isLoading = ref(true)
-
-const data = ref<Film[]>(Array())
-
-const search = ref('')
-
-
-onMounted(async () => {
-  await nextTick()
-  getFilms()
-})
-
-
-async function getFilms () {
-  isLoading.value = true
-  
-  const {
-    data: { value },
-    error,
-    status
-  } = await useAPI({
-    params: {
-      query: film.allFilms()
-    }
-  })
-
-  if (value) {
-    const res: {
-      data?: {
-        allFilms: {
-          films: Film[],
-          pageInfo: PageInfo,
-          totalCount: number
-        }
-      }
-    } = value
-
-    if (res.data) data.value = res.data.allFilms.films
-  }
-  
-  if (error.value) {
-    toast.add({
-      title: error.value.data?.message || error.value.message,
-      color: 'red'
-    })
-  }
-
-  if (status.value === 'pending') isLoading.value = true
-
-  isLoading.value = false
-}
-</script>
 
 <template>
   <UCard>
     <template #header>
       <ReuseTitle
-        label="All Films"
+        label="All Characters"
         is-filter
         placeholder-filter="title"
         @search="search = $event"

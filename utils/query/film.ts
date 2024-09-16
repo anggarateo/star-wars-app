@@ -40,24 +40,8 @@ const film: any = (id: string) => `{
       characters {
         name,
         birthYear,
-        gender,
-        homeworld {
-          name,
-          id
-        },
-        id
-      }
-    },
-    planetConnection {
-      pageInfo {
-        hasNextPage,
-        hasPreviousPage,
-        startCursor,
-        endCursor
-      },
-      totalCount,
-      planets {
-        name,
+        height,
+        mass,
         id
       }
     },
