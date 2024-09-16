@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import character from '~/utils/query/character';
+import birthYear from '~/utils/birthYear'
+
 
 useHead({
   title: 'All Characters -'
