@@ -73,33 +73,63 @@ async function getDetailCharacter () {
       v-else
       class="space-y-3"
     >
-      <h1>
-        Birth Year: {{ data.birthYear }}
-      </h1>
+      <div class="grid grid-cols-2 sm:grid-cols-4 capitalize">
+        <h1>
+          Birth Year
+        </h1>
 
-      <h1>
-        Gender: {{ data.gender }}
-      </h1>
-      
-      <h1>
-        Mass: {{ data.mass }} kg
-      </h1>
+        <h1>
+          : {{ data.birthYear }}
+        </h1>
+        
+        <h1>
+          Gender
+        </h1>
 
-      <h1>
-        Height: {{ data.height }} cm
-      </h1>
+        <h1>
+          : {{ data.gender }}
+        </h1>
+        
+        <h1>
+          Mass
+        </h1>
 
-      <h1>
-        Skin: {{ data.skinColor }}
-      </h1>
+        <h1>
+          : {{ data.mass }}kg
+        </h1>
+        
+        <h1>
+          Height
+        </h1>
 
-      <h1>
-        Hair: {{ data.hairColor }}
-      </h1>
+        <h1>
+          : {{ data.height }}cm
+        </h1>
+        
+        <h1>
+          Skin
+        </h1>
 
-      <h1>
-        Eye: {{ data.eyeColor }}
-      </h1>
+        <h1>
+          : {{ data.skinColor }}
+        </h1>
+        
+        <h1>
+          Hair
+        </h1>
+
+        <h1>
+          : {{ data.hairColor }}
+        </h1>
+        
+        <h1>
+          Eye
+        </h1>
+
+        <h1>
+          : {{ data.eyeColor }}
+        </h1>
+      </div>
 
       <h1>
         Films
