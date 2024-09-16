@@ -112,15 +112,15 @@ async function getDetailCharacter () {
           :to="`/films/${film.id}`"
           class="min-w-[calc(100vw/2)] sm:min-w-[calc(100vw/10)] space-y-1 border rounded p-2 shadow"
         >
-          <h1 class="text-end">
+          <h1 class="text-end font-semibold">
             {{ film.title }}
           </h1>
 
-          <h1 class="text-sm">
+          <h1 class="text-xs">
             Director: <UBadge v-if="film.director" color="gray" variant="solid" class="m-1">{{ film.director }}</UBadge>
           </h1>
       
-          <h1 class="text-sm">
+          <h1 class="text-xs">
             Producer: <UBadge v-for="(producer, i) in film.producers" :key="i" color="gray" variant="solid" class="m-1">{{ producer }}</UBadge>
           </h1>
         </NuxtLink>
