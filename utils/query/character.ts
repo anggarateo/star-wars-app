@@ -1,4 +1,4 @@
-const allCharacters = () => `{
+const allCharacters: any = () => `{
   allPeople {
     pageInfo {
       hasNextPage
@@ -13,24 +13,6 @@ const allCharacters = () => `{
       gender,
       height,
       mass,
-      filmConnection {
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
-        },
-        totalCount,
-        title
-        episodeID
-        openingCrawl
-        director
-        producers
-        releaseDate
-        created
-        edited
-        id
-      },
       created,
       edited,
       id
@@ -38,7 +20,7 @@ const allCharacters = () => `{
   }
 }`
 
-const character = (id: string) => `{
+const character: any = (id: string) => `{
   person(id: "${id}") {
     name,
     birthYear,
@@ -56,15 +38,17 @@ const character = (id: string) => `{
         endCursor
       },
       totalCount,
-      title
-      episodeID
-      openingCrawl
-      director
-      producers
-      releaseDate
-      created
-      edited
-      id
+      films {
+        title
+        episodeID
+        openingCrawl
+        director
+        producers
+        releaseDate
+        created
+        edited
+        id
+      }
     },
     created,
     edited,
