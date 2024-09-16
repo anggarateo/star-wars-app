@@ -17,7 +17,7 @@ watch(() => search.value, (val: string) => {
 </script>
 
 <template>
-  <div class="flex justify-between">
+  <div class="space-y-2 sm:flex justify-between">
     <div class="flex items-center gap-2">
       <UButton
         v-if="isDetail"
