@@ -110,7 +110,7 @@ async function getDetailCharacter () {
           v-for="film in data.filmConnection?.films"
           :key="film.id"
           :to="`/films/${film.id}`"
-          class="min-w-[calc(100vw/10)] text-end space-y-1 border rounded p-2 shadow"
+          class="min-w-[calc(100vw/3)] sm:min-w-[calc(100vw/10)] text-end space-y-1 border rounded p-2 shadow"
         >
           <h1>
             {{ film.title }}
