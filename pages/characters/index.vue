@@ -99,7 +99,7 @@ async function getCharacters () {
             <div class="flex justify-between items-center">
               <div>
                 <h1>
-                  {{ character.birthYear }}
+                  {{ birthYear(character.birthYear) }}
                 </h1>
 
                 <h1>
