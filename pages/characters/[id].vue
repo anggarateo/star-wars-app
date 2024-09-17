@@ -73,62 +73,66 @@ async function getDetailCharacter () {
       v-else
       class="space-y-3"
     >
-      <div class="grid grid-cols-2 sm:grid-cols-4 capitalize">
-        <h1>
-          Birth Year
-        </h1>
+      <div class="flex items-center capitalize">
+        <div class="w-1/3 sm:w-1/6">
+          <h1>
+            Birth Year
+          </h1>
+                  
+          <h1>
+            Gender
+          </h1>
+                    
+          <h1>
+            Mass
+          </h1>
 
-        <h1>
-          : {{ data.birthYear }}
-        </h1>
-        
-        <h1>
-          Gender
-        </h1>
+          <h1>
+            Height
+          </h1>
 
-        <h1>
-          : {{ data.gender }}
-        </h1>
-        
-        <h1>
-          Mass
-        </h1>
+          <h1>
+            Skin
+          </h1>
 
-        <h1>
-          : {{ data.mass }}kg
-        </h1>
-        
-        <h1>
-          Height
-        </h1>
+          <h1>
+            Hair
+          </h1>
 
-        <h1>
-          : {{ data.height }}cm
-        </h1>
-        
-        <h1>
-          Skin
-        </h1>
+          <h1>
+            Eye
+          </h1>
+        </div>
 
-        <h1>
-          : {{ data.skinColor }}
-        </h1>
-        
-        <h1>
-          Hair
-        </h1>
+        <div class="w-full font-medium">
+          <h1>
+            {{ birthYear(data.birthYear) }}
+          </h1>
+          
+          <h1>
+            {{ data.gender }}
+          </h1>
 
-        <h1>
-          : {{ data.hairColor }}
-        </h1>
-        
-        <h1>
-          Eye
-        </h1>
-
-        <h1>
-          : {{ data.eyeColor }}
-        </h1>
+          <h1>
+            {{ data.mass }}kg
+          </h1>
+          
+          <h1>
+            {{ data.height }}cm
+          </h1>
+          
+          <h1>
+            {{ data.skinColor }}
+          </h1>
+          
+          <h1>
+            {{ data.hairColor }}
+          </h1>
+          
+          <h1>
+            {{ data.eyeColor }}
+          </h1>
+        </div>
       </div>
 
       <h1>
@@ -140,7 +144,7 @@ async function getDetailCharacter () {
           v-for="film in data.filmConnection?.films"
           :key="film.id"
           :to="`/films/${film.id}`"
-          class="min-w-[calc(100vw/2)] sm:min-w-[calc(100vw/10)] space-y-1 border rounded p-2 shadow"
+          class="min-w-[calc(100vw/2)] sm:min-w-[calc(100vw/10)] w-[calc(100vw/2)] sm:w-[calc(100vw/4)] space-y-1 border rounded p-2 shadow"
         >
           <h1 class="text-end font-semibold">
             {{ film.title }}

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import character from '~/utils/query/character';
-import birthYear from '~/utils/birthYear'
 
 
 useHead({
@@ -98,8 +97,8 @@ async function getCharacters () {
               </h1>
             </template>
 
-            <div class="flex justify-between items-center capitalize">
-              <div>
+            <div class="flex justify-between items-end capitalize">
+              <div class="w-full">
                 <h1>
                   {{ birthYear(character.birthYear) }}
                 </h1>
@@ -109,7 +108,7 @@ async function getCharacters () {
                 </h1>
               </div>
 
-              <div class="text-end">
+              <div class="w-1/3 text-end">
                 <h1>
                   {{ character.mass }} kg
                 </h1>

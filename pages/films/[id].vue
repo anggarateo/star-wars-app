@@ -102,16 +102,16 @@ async function getDetailFilm () {
           v-for="character in data.characterConnection?.characters"
           :key="character.id"
           :to="`/characters/${character.id}`"
-          class="min-w-[calc(100vw/2)] sm:min-w-[calc(100vw/10)] space-y-1 border rounded p-2 shadow"
+          class="min-w-[calc(100vw/1.3)] sm:min-w-[calc(100vw/3.5)] space-y-1 border rounded p-2 shadow"
         >
           <h1 class="font-semibold text-end">
             {{ character.name }}
           </h1>
 
-          <div class="flex justify-between items-center">
-            <div>
+          <div class="flex justify-between items-end capitalize">
+            <div class="w-full">
               <h1>
-                {{ character.birthYear }}
+                {{ birthYear(character.birthYear) }}
               </h1>
 
               <h1>
@@ -119,7 +119,7 @@ async function getDetailFilm () {
               </h1>
             </div>
 
-            <div class="text-end">
+            <div class="w-1/3 text-end">
               <h1>
                 {{ character.mass }} kg
               </h1>
