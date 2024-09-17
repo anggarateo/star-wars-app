@@ -1,6 +1,9 @@
 # Star Wars App
 
-[Demo](https://star-wars-app-phi.vercel.app/)
+## API
+[https://graphql.org/swapi-graphql/](https://graphql.org/swapi-graphql/)
+## Demo
+[https://star-wars-app-phi.vercel.app/](https://star-wars-app-phi.vercel.app/)
 
 ## Requirement
 
