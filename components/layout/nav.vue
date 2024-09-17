@@ -11,7 +11,7 @@ const isDark = computed({
 </script>
 
 <template>
-  <nav class="flex items-center gap-4 fixed bottom-0 sm:sticky sm:top-0 bg-white dark:bg-gray-800 w-full sm:w-max justify-around p-2">
+  <nav class="flex items-center gap-4 fixed bottom-0 sm:sticky sm:top-0 bg-white dark:bg-gray-800 w-full sm:w-max justify-around p-2 shadow-inline sm:shadow-none">
     <NuxtLink
       v-for="(link, i) in routes"
       :key="i"
