@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/ui": "^2.18.4",
     "nuxt": "^3.13.0",
+    "v3-infinite-loading": "^1.3.2",
     "vue": "latest",
     "vue-router": "latest"
   },

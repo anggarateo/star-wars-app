@@ -1,5 +1,20 @@
-const allCharacters: any = () => `{
-  allPeople {
+const allCharacters: any = ({
+  after,
+  first,
+  before,
+  last
+}: {
+  after?: string,
+  first?: number,
+  before?: string,
+  last?: number
+}) => `{
+  allPeople(
+    ${after ? `after: "${after}",` : ''}
+    ${first ? `first: ${first},` : ''}
+    ${before ? `before: "${before}",` : ''}
+    ${last ? `last: ${last},` : ''}
+  ) {
     pageInfo {
       hasNextPage
       hasPreviousPage

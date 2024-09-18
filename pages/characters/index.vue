@@ -15,6 +15,11 @@ const data = ref<Character[]>(Array())
 
 const search = ref('')
 
+const pagination = ref({
+  after: '',
+  first: 6
+})
+
 
 onMounted(async () => {
   await nextTick()
@@ -22,7 +27,7 @@ onMounted(async () => {
 })
 
 
-async function getCharacters () {
+async function getCharacters ($state?: any) {
   isLoading.value = true
   
   const {
@@ -31,7 +36,7 @@ async function getCharacters () {
     status
   } = await useAPI({
     params: {
-      query: character.allCharacters()
+      query: character.allCharacters(pagination.value)
     }
   })
 
@@ -46,10 +51,18 @@ async function getCharacters () {
       }
     } = value
 
-    if (res.data) data.value = res.data.allPeople.people
+    if (res.data) {
+      res.data.allPeople.pageInfo.hasNextPage
+        ? $state?.loaded()
+        : $state?.complete()
+
+      data.value.push(...res.data.allPeople.people)
+      pagination.value.after = res.data.allPeople.pageInfo.endCursor
+    }
   }
   
   if (error.value) {
+    $state?.error()
     toast.add({
       title: error.value.data?.message || error.value.message,
       color: 'red'
@@ -75,7 +88,7 @@ async function getCharacters () {
 
     
     <div class="grid sm:grid-cols-3 gap-4">
-      <template v-if="isLoading">
+      <template v-if="isLoading && !pagination.after">
         <USkeleton
           v-for="i in 3"
           :key="i"
@@ -120,6 +133,13 @@ async function getCharacters () {
             </div>
           </UCard>
         </NuxtLink>
+
+        <InfiniteLoading @infinite="getCharacters" class="flex justify-center items-center">
+          <template #spinner />
+          <template #complete>
+            <div />
+          </template>
+        </InfiniteLoading>
       </template>
     </div>
   </UCard>
