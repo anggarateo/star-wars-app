@@ -71,67 +71,107 @@ async function getDetailCharacter () {
 
     <div
       v-else
-      class="space-y-3"
+      class="space-y-3 capitalize"
     >
-      <div class="flex items-center capitalize">
-        <div class="w-1/3 sm:w-1/6">
-          <h1>
+      <div class="space-y-1">
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
             Birth Year
           </h1>
-                  
-          <h1>
-            Gender
-          </h1>
-                    
-          <h1>
-            Mass
-          </h1>
 
-          <h1>
-            Height
-          </h1>
-
-          <h1>
-            Skin
-          </h1>
-
-          <h1>
-            Hair
-          </h1>
-
-          <h1>
-            Eye
+          <h1 class="w-full font-semibold">
+            {{ birthYear(data.birthYear) }}
           </h1>
         </div>
 
-        <div class="w-full font-medium">
-          <h1>
-            {{ birthYear(data.birthYear) }}
-          </h1>
-          
-          <h1>
-            {{ data.gender }}
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Gender
           </h1>
 
-          <h1>
-            {{ data.mass }}kg
+          <h1 class="w-full font-semibold">
+            {{ data.gender }}
           </h1>
-          
-          <h1>
-            {{ data.height }}cm
+        </div>
+
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Mass
           </h1>
-          
-          <h1>
+
+          <h1 class="w-full font-semibold">
+            {{ data.mass ? `${data.mass} kg` : '' }}
+          </h1>
+        </div>
+
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Height
+          </h1>
+
+          <h1 class="w-full font-semibold">
+            {{ data.height ? `${data.height} cm` : '' }}
+          </h1>
+        </div>
+
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Skin
+          </h1>
+
+          <h1 class="w-full font-semibold">
             {{ data.skinColor }}
           </h1>
-          
-          <h1>
+        </div>
+
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Hair
+          </h1>
+
+          <h1 class="w-full font-semibold">
             {{ data.hairColor }}
           </h1>
-          
-          <h1>
+        </div>
+
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Eye
+          </h1>
+
+          <h1 class="w-full font-semibold">
             {{ data.eyeColor }}
           </h1>
+        </div>
+
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Species
+          </h1>
+
+          <div class="w-full">
+            <NuxtLink
+              class="font-semibold underline hover:text-orange-400"
+              :to="`/species/${data.species?.id}`"
+            >
+              {{ data.species?.name }}
+            </NuxtLink>
+          </div>
+        </div>
+
+        <div class="flex">
+          <h1 class="w-1/3 sm:w-1/6">
+            Planet
+          </h1>
+
+          <div class="w-full">
+            <NuxtLink
+              class="font-semibold underline hover:text-orange-400"
+              :to="`/planets/${data.homeworld?.id}`"
+            >
+              {{ data.homeworld?.name }}
+            </NuxtLink>
+          </div>
         </div>
       </div>
 

@@ -1,5 +1,20 @@
-const allFilms: any = () => `{
-  allFilms {
+const allFilms: any = ({
+  after,
+  first,
+  before,
+  last
+}: {
+  after?: string,
+  first?: number,
+  before?: string,
+  last?: number
+}) => `{
+  allFilms(
+    ${after ? `after: "${after}"` : ''}
+    ${first ? `first: ${first}` : ''}
+    ${before ? `before: "${before}"` : ''}
+    ${last ? `last: ${last}` : ''}
+  ) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -23,31 +38,39 @@ const allFilms: any = () => `{
 
 const film: any = (id: string) => `{
   film(id: "${id}") {
-    title,
-    episodeID,
-    openingCrawl,
-    director,
-    producers,
-    releaseDate,
+    title
+    episodeID
+    openingCrawl
+    director
+    producers
+    releaseDate
     characterConnection {
       pageInfo {
-        hasNextPage,
-        hasPreviousPage,
-        startCursor,
+        hasNextPage
+        hasPreviousPage
+        startCursor
         endCursor
-      },
-      totalCount,
+      }
+      totalCount
       characters {
-        name,
-        birthYear,
-        gender,
-        height,
-        mass,
+        name
+        birthYear
+        gender
+        height
+        mass
+        species {
+          name
+          id
+        }
+        homeworld {
+          name
+          id
+        }
         id
       }
-    },
-    created,
-    edited,
+    }
+    created
+    edited
     id
   }
 }`

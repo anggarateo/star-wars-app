@@ -15,6 +15,11 @@ const data = ref<Film[]>(Array())
 
 const search = ref('')
 
+const pagination = ref({
+  after: '',
+  first: 6
+})
+
 
 onMounted(async () => {
   await nextTick()
@@ -22,7 +27,13 @@ onMounted(async () => {
 })
 
 
-async function getFilms () {
+async function getFilms (
+  $state?: {
+    loaded: () => void,
+    complete: () => void,
+    error: () => void
+  }
+) {
   isLoading.value = true
   
   const {
@@ -31,7 +42,7 @@ async function getFilms () {
     status
   } = await useAPI({
     params: {
-      query: film.allFilms()
+      query: film.allFilms(pagination.value)
     }
   })
 
@@ -46,10 +57,18 @@ async function getFilms () {
       }
     } = value
 
-    if (res.data) data.value = res.data.allFilms.films
+    if (res.data) {
+      res.data.allFilms.pageInfo.hasNextPage
+        ? $state?.loaded()
+        : $state?.complete()
+      
+      data.value.push(...res.data.allFilms.films)
+      pagination.value.after = res.data.allFilms.pageInfo.endCursor
+    }
   }
   
   if (error.value) {
+    $state?.error()
     toast.add({
       title: error.value.data?.message || error.value.message,
       color: 'red'
@@ -75,7 +94,7 @@ async function getFilms () {
 
     
     <div class="grid sm:grid-cols-3 gap-4">
-      <template v-if="isLoading">
+      <template v-if="isLoading && !pagination.after">
         <USkeleton
           v-for="i in 3"
           :key="i"
@@ -112,6 +131,13 @@ async function getFilms () {
             </template>
           </UCard>
         </NuxtLink>
+
+        <InfiniteLoading @infinite="getFilms" class="flex justify-center items-center">
+          <template #spinner />
+          <template #complete>
+            <div />
+          </template>
+        </InfiniteLoading>
       </template>
     </div>
   </UCard>

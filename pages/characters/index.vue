@@ -27,7 +27,13 @@ onMounted(async () => {
 })
 
 
-async function getCharacters ($state?: any) {
+async function getCharacters (
+  $state?: {
+    loaded: () => void,
+    complete: () => void,
+    error: () => void
+  }
+) {
   isLoading.value = true
   
   const {
@@ -81,7 +87,7 @@ async function getCharacters ($state?: any) {
       <ReuseTitle
         label="All Characters"
         is-filter
-        placeholder-filter="title"
+        placeholder-filter="name"
         @search="search = $event"
       />
     </template>
@@ -101,7 +107,7 @@ async function getCharacters ($state?: any) {
           v-for="character in data.filter(el => el.name.toLowerCase().includes(search.toLowerCase()))"
           :key="character.id"
           :to="`/characters/${character.id}`"
-          class="h-full"
+          class="h-full capitalize"
         >
           <UCard class="h-full">
             <template #header>
@@ -110,26 +116,64 @@ async function getCharacters ($state?: any) {
               </h1>
             </template>
 
-            <div class="flex justify-between items-end capitalize">
-              <div class="w-full">
-                <h1>
-                  {{ birthYear(character.birthYear) }}
-                </h1>
+            <div class="flex">
+              <h1 class="w-1/2 sm:w-1/3">
+                Birth Year
+              </h1>
 
-                <h1>
-                  {{ character.gender }}
-                </h1>
-              </div>
+              <h1 class="w-full font-semibold">
+                {{ birthYear(character.birthYear) }}
+              </h1>
+            </div>
 
-              <div class="w-1/3 text-end">
-                <h1>
-                  {{ character.mass }} kg
-                </h1>
-  
-                <h1>
-                  {{ character.height }} cm
-                </h1>
-              </div>
+            <div class="flex">
+              <h1 class="w-1/2 sm:w-1/3">
+                Gender
+              </h1>
+
+              <h1 class="w-full font-semibold">
+                {{ character.gender }}
+              </h1>
+            </div>
+
+            <div class="flex">
+              <h1 class="w-1/2 sm:w-1/3">
+                Mass
+              </h1>
+
+              <h1 class="w-full font-semibold">
+                {{ character.mass ? `${character.mass} kg` : '' }}
+              </h1>
+            </div>
+
+            <div class="flex">
+              <h1 class="w-1/2 sm:w-1/3">
+                Height
+              </h1>
+
+              <h1 class="w-full font-semibold">
+                {{ character.height ? `${character.height} cm` : '' }}
+              </h1>
+            </div>
+
+            <div class="flex">
+              <h1 class="w-1/2 sm:w-1/3">
+                Species
+              </h1>
+
+              <h1 class="w-full font-semibold">
+                {{ character.species?.name }}
+              </h1>
+            </div>
+
+            <div class="flex">
+              <h1 class="w-1/2 sm:w-1/3">
+                Planet
+              </h1>
+
+              <h1 class="w-full font-semibold">
+                {{ character.homeworld?.name }}
+              </h1>
             </div>
           </UCard>
         </NuxtLink>

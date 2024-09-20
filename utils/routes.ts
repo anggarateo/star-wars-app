@@ -12,6 +12,16 @@ const routes: {
     to: '/characters',
     name: 'Characters',
     icon: 'game-icons:character'
+  },
+  {
+    to: '/planets',
+    name: 'Planets',
+    icon: 'solar:planet-2-bold'
+  },
+  {
+    to: '/species',
+    name: 'Species',
+    icon: 'ooui:logo-wikispecies'
   }
 ]
 

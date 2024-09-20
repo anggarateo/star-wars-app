@@ -73,7 +73,7 @@ async function getDetailFilm () {
       v-else
       class="space-y-3"
     >
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between">
         <div>
           <h1>
             Director: <UBadge v-if="data.director" color="gray" variant="solid" class="m-1">{{ data.director }}</UBadge>
@@ -97,37 +97,82 @@ async function getDetailFilm () {
         Characters
       </h1>
 
-      <div class="max-w-full flex overflow-auto gap-2 text-sm pb-4">
+      <h1
+        v-if="!data.characterConnection.characters.length"
+        class="text-sm px-2"
+      >
+        None
+      </h1>
+
+      <div v-else class="max-w-full flex overflow-auto gap-2 text-sm pb-4">
         <NuxtLink
           v-for="character in data.characterConnection?.characters"
           :key="character.id"
           :to="`/characters/${character.id}`"
-          class="min-w-[calc(100vw/1.3)] sm:min-w-[calc(100vw/3.5)] space-y-1 border rounded p-2 shadow"
+          class="min-w-[calc(100vw/1.3)] sm:min-w-[calc(100vw/3.5)] space-y-1 border rounded p-2 shadow capitalize"
         >
           <h1 class="font-semibold text-end">
             {{ character.name }}
           </h1>
 
-          <div class="flex justify-between items-end capitalize">
-            <div class="w-full">
-              <h1>
-                {{ birthYear(character.birthYear) }}
-              </h1>
+          <div class="flex">
+            <h1 class="w-1/3">
+              Birth Year
+            </h1>
 
-              <h1>
-                {{ character.gender }}
-              </h1>
-            </div>
+            <h1 class="font-semibold">
+              {{ birthYear(character.birthYear) }}
+            </h1>
+          </div>
 
-            <div class="w-1/3 text-end">
-              <h1>
-                {{ character.mass }} kg
-              </h1>
-  
-              <h1>
-                {{ character.height }} cm
-              </h1>
-            </div>
+          <div class="flex">
+            <h1 class="w-1/3">
+              Gender
+            </h1>
+
+            <h1 class="font-semibold">
+              {{ character.gender }}
+            </h1>
+          </div>
+
+          <div class="flex">
+            <h1 class="w-1/3">
+              Mass
+            </h1>
+
+            <h1 class="font-semibold">
+              {{ character.mass ? `${character.mass} kg` : '' }}
+            </h1>
+          </div>
+
+          <div class="flex">
+            <h1 class="w-1/3">
+              Height
+            </h1>
+
+            <h1 class="font-semibold">
+              {{ character.height ? `${character.height} cm` : '' }}
+            </h1>
+          </div>
+
+          <div class="flex">
+            <h1 class="w-1/3">
+              Species
+            </h1>
+
+            <h1 class="font-semibold">
+              {{ character.species?.name }}
+            </h1>
+          </div>
+
+          <div class="flex">
+            <h1 class="w-1/3">
+              Planet
+            </h1>
+
+            <h1 class="font-semibold">
+              {{ character.homeworld?.name }}
+            </h1>
           </div>
         </NuxtLink>
       </div>

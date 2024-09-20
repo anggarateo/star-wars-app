@@ -28,6 +28,14 @@ const allCharacters: any = ({
       gender,
       height,
       mass,
+      species {
+        name
+        id
+      }
+      homeworld {
+        name
+        id
+      }
       created,
       edited,
       id
@@ -45,6 +53,14 @@ const character: any = (id: string) => `{
     height,
     mass,
     skinColor,
+    species {
+      name
+      id
+    }
+    homeworld {
+      name
+      id
+    }
     filmConnection {
       pageInfo {
         hasNextPage
